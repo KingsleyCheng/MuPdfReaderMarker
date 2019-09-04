@@ -89,14 +89,11 @@ public class DocumentActivity extends Activity {
         System.out.println("Trying to open " + path);
         try {
             core = new MuPDFCore(path);
-        } catch (Exception e) {
+        } catch (Exception | OutOfMemoryError e) {
             System.out.println(e);
             return null;
-        } catch (OutOfMemoryError e) {
-            //  out of memory is not an Exception, so we catch it separately.
-            System.out.println(e);
-            return null;
-        }
+        } //  out of memory is not an Exception, so we catch it separately.
+
         return core;
     }
 
